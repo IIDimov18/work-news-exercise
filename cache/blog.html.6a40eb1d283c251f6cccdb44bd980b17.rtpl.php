@@ -54,6 +54,20 @@
                 </div>
 
                 <div class="col">
+                    <div class="row">
+                        <div class="col-4 m-3">
+                            <form name="search" action="blog.php" method="get" class="form-inline">
+                                <div class="input-group">
+                                    <input type="text"class="form-control " placeholder="Search" name="query">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                      </div>
+                                </div>
+                                
+                                
+                            </form>
+                        </div> 
+                    </div>
                     <table class="table table-dark table-hover rounded">
                         <thead>
                             <th scope="col">Id</th>

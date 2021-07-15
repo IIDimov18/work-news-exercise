@@ -4,6 +4,10 @@ include_once "inc/raintpl/rain.tpl.class.php";
 $install_path="";
 $sm = new RainTPL();
 
+//pagination admin
+//search
+
+
 //RAIN TPL ===============================================
 raintpl::$tpl_dir = $install_path."templates/"; // template directory
 raintpl::$cache_dir = $install_path."cache/"; // cache directory
@@ -24,6 +28,31 @@ if($act=="delete"){
     }
 }
 
+if($act=="create"){
+    if(isset($_POST['submit'])){
+
+        $title  = $_POST['title'];
+        $desc  = $_POST['description'];
+        $PICSQL="";
+        if(isset($_FILES['img']['name'])){
+
+            $newname = date("Ymdhis").basename($_FILES["img"]["name"]); 
+
+            $target = 'img\\'.$newname;
+            $res  = move_uploaded_file(  $_FILES['img']['tmp_name'], $target);
+            
+            if($res) {
+                
+                $res = $conn->query("INSERT INTO news (Title, Description, Thumbnail) VALUES ('{$title}' ,'{$desc}', '{$newname}' )");
+                if($res){
+                    header("Location: blog.php");
+                    die;
+                }
+            }
+        }
+    }
+}
+
 if($act=="edit"){
     if(isset($_POST['submit'])){
         $title  = $_POST['title'];
@@ -31,20 +60,17 @@ if($act=="edit"){
         $PICSQL="";
 
         if(isset($_FILES['img']['name'])){
-            // $oldFile=pathinfo("img/".$id.".");
-            // unlink("img/".$id.$oldFile['extension']);
-            // $info = pathinfo($_FILES['img']['name']);
-            // $ext = $info['extension'];
-            // $newname = $id.".".$ext; 
-            //TODO Remove old picture
-            //TODO make $newname with getdate so it can't repate
-            $newname = $_FILES['img']['name']; 
 
-            $target = 'img/'.$newname;
+            $newname = date("Ymdhis").basename($_FILES["img"]["name"]); 
+
+            $target = 'img\\'.$newname;
             $res  = move_uploaded_file(  $_FILES['img']['tmp_name'], $target);
             if($res) {
                 $PICSQL = ", Thumbnail = '$newname'";
-
+                
+                $oldFile = $conn->query("SELECT Thumbnail FROM news WHERE Id = '{$_REQUEST['id']}'");
+                $oldFile = $oldFile->fetch_assoc();
+                unlink("img\\".$oldFile['Thumbnail']);
             }
         }
     $res = $conn->query("UPDATE News SET Title = '$title', Description = '$desc' {$PICSQL} WHERE Id = '{$id}'");  

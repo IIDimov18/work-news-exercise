@@ -40,7 +40,7 @@
 
 
         <div class="row">
-              <img src="img/<?php echo $row["Thumbnail"];?>.jpg" class= "rounded w-75 h-75 mx-auto">
+              <img src="img/<?php echo $row["Thumbnail"];?>" class= "rounded w-75 h-75 mx-auto">
         </div>
 
         <div class="row">

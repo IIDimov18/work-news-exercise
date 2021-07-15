@@ -48,7 +48,7 @@
           <div class="row rounded bg-light border border-dark mb-4">
             <div class="col-md-4 p-0 " > 
                 <a href="viewPage.php?id=<?php echo $value1["Id"];?>">
-                  <img src="img/<?php echo $value1["Thumbnail"];?>.jpg" class="w-100 h-100">
+                  <img src="img/<?php echo $value1["Thumbnail"];?>" class="w-100 h-100">
                 </a>
               </div>
               <div class="col-md-8">

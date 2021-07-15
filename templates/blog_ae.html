@@ -54,7 +54,41 @@
                 </div>
 
                 <div class="col">
-                    
+                    <p class="fs-1 fw-bold text-center">Add a news</p>
+                    <div class="container w-100 rounded bg-light border border-dark">
+                    <form action="blog_ae.php?act=create&id=-1" method="post" enctype="multipart/form-data">
+                       <div class="row mt-4 justify-content-center">
+                           <div class="col-md-10 col-lg-4">
+                               <label for="title" class="form-label">Title</label>
+                               <input type="text" class="form-control" id="title" name="title">
+                           </div>
+  
+                       </div>
+  
+                      <div class="row justify-content-center">
+                          <div class="col-md-10 col-lg-4">
+                              <label for="description" class="form-label">Description</label>
+                              <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                          </div>
+  
+                      </div>
+                      <div class="row justify-content-center">
+                          <div class="col-md-10 col-lg-4">
+                              <label for="img" class="form-label">Image</label>
+                              <input type="file" class="form-control" id="img" name="img" accept="image/*">
+                          </div>
+  
+                      </div>
+                        <div class="row justify-content-center pt-3 pb-5">
+                            <div class="col-4 d-grid">
+                                <button type="submit" name="submit" class="btn btn-primary btn-block">Save</button>
+                            </div>
+  
+                        </div>
+                        
+  
+                    </form>
+                  </div>
                 </div>
             </div>
         </div>

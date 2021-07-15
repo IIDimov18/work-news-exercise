@@ -9,10 +9,14 @@ raintpl::$tpl_dir = $install_path."templates/"; // template directory
 raintpl::$cache_dir = $install_path."cache/"; // cache directory
 
 
-
-$stmt = $conn->prepare('SELECT * FROM news');
-$stmt->execute();
-$result = $stmt->get_result();
+$search='';
+if(isset($_REQUEST['query'])&&$_REQUEST['query']!=""){
+  
+  $search='WHERE MATCH (Title, Description, Thumbnail) AGAINST (% '.$_REQUEST['query'].' %)';
+}
+//SEARCH
+//PAGINATION
+$result = $conn->query("SELECT * FROM news '{$search}'");
 
 $news = [];
 while($row = $result->fetch_assoc()) {
