@@ -7,7 +7,7 @@
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -63,10 +63,10 @@
                                         <button type="submit" class="btn btn-primary">Search</button>
                                       </div>
                                 </div>
-                                
-                                
+
+
                             </form>
-                        </div> 
+                        </div>
                     </div>
                     <table class="table table-dark table-hover rounded">
                         <thead>
@@ -97,6 +97,14 @@
                             <?php } ?>
                         </tbody>
                 </table>
+                    <?php if( $totalPages>1 ){ ?>
+
+                    <a class="btn border border-primary" href="blog.php?page=<?php echo $page-1;?>" role="button">&lt</a>
+                    <?php $counter1=-1; if( isset($pages) && is_array($pages) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+                    <a class="btn border border-primary <?php if( $counter1+1==$page ){ ?> btn-primary <?php } ?>" href="blog.php?page=<?php echo $value1;?>" role="button"><?php echo $value1;?></a>
+                    <?php } ?>
+                    <a class="btn border border-primary" href="blog.php?page=<?php echo $page+1;?>" role="button">&gt</a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
